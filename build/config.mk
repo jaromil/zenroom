@@ -157,12 +157,13 @@ BUILDS := $(filter-out mimalloc,$(BUILDS))
 ldadd := $(filter-out ${pwd}/lib/mimalloc/build/libmimalloc-static.a,${ldadd})
 ndk = ${NDK_HOME}
 toolchain = ${ndk}/toolchains/llvm/prebuilt/linux-x86_64
-gcc = ${toolchain}/bin/clang-14
+sysroot = ${toolchain}/sysroot
+gcc = ${toolchain}/bin/clang
 ar = ${toolchain}/bin/llvm-ar
 ldadd += -lm -llog
 ldflags := -shared
 cflags += -fPIC -DLIBRARY -D'ARCH=\"LINUX\"' -DARCH_LINUX -DARCH_ANDROID
-cflags += -DLUA_USE_DLOPEN -I${ndk}/sysroot/usr/include
+cflags += -DLUA_USE_DLOPEN -I${toolchain}/sysroot/usr/include
 system := Android
 android := 21
 endif
@@ -174,7 +175,7 @@ ldadd := $(filter-out ${pwd}/lib/mimalloc/build/libmimalloc-static.a,${ldadd})
 target = arm-linux-androideabi
 ld = ${toolchain}/bin/${target}-link
 sysroot = ${ndk}/platforms/android-${android}/arch-arm
-cflags += -D__ANDROID_API__=${android} -I${ndk}/sysroot/usr/include/arm-linux-androideabi --target=armv7-none-linux-androideabi --gcc-toolchain=${ndk}/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=${sysroot}
+cflags += -D__ANDROID_API__=${android} -I${toolchain}/sysroot/usr/include/arm-linux-androideabi --target=armv7-none-linux-androideabi --gcc-toolchain=${ndk}/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=${sysroot}
 milagro_cmake_flags += -DCMAKE_SYSTEM_NAME=${system} -DCMAKE_ANDROID_NDK=${ndk} -DCMAKE_ANDROID_API=${android}
 endif
 
@@ -185,7 +186,7 @@ ldadd := $(filter-out ${pwd}/lib/mimalloc/build/libmimalloc-static.a,${ldadd})
 target = x86
 ld = ${toolchain}/bin/${target}-link
 sysroot = ${ndk}/platforms/android-${android}/arch-x86
-cflags += -D__ANDROID_API__=${android} -I${ndk}/sysroot/usr/include/i686-linux-android --target=i686-linux-android --gcc-toolchain=${ndk}/toolchains/${target}-4.9/prebuilt/linux-x86_64 --sysroot=${sysroot}
+cflags += -D__ANDROID_API__=${android} -I${toolchain}/sysroot/usr/include/i686-linux-android --target=i686-linux-android --gcc-toolchain=${ndk}/toolchains/${target}-4.9/prebuilt/linux-x86_64 --sysroot=${sysroot}
 milagro_cmake_flags += -DCMAKE_SYSTEM_NAME=${system} -DCMAKE_ANDROID_NDK=${ndk} -DCMAKE_ANDROID_API=${android}
 endif
 
@@ -197,7 +198,7 @@ target = aarch64-linux-android
 ld = ${toolchain}/bin/${target}-link
 android := 21
 sysroot = ${ndk}/platforms/android-${android}/arch-arm64
-cflags += -D__ANDROID_API__=${android} -I${ndk}/sysroot/usr/include/aarch64-linux-android --target=aarch64-linux-android21 --gcc-toolchain=${ndk}/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_64 --sysroot=${sysroot}
+cflags += -D__ANDROID_API__=${android} -I${toolchain}/sysroot/usr/include/aarch64-linux-android --target=aarch64-linux-android21 --gcc-toolchain=${ndk}/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_64 --sysroot=${sysroot}
 milagro_cmake_flags += -DCMAKE_SYSTEM_NAME=${system} -DCMAKE_ANDROID_NDK=${ndk} -DCMAKE_ANDROID_API=${android} -DCMAKE_SYSTEM_PROCESSOR=aarch64
 endif
 
