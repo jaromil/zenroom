@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-ANDROID_HOME=${ANDROID_HOME:=~/Android/Sdk}
-export NDK_HOME=${NDK_HOME:=${ANDROID_HOME}/ndk-bundle}
+export ANDROID_HOME="${ANDROID_HOME:-${HOME}/Android/Sdk}"
+export NDK_HOME="${NDK_HOME:-${ANDROID_HOME}/ndk-bundle}"
 
-LIB_SRC_PATH=${LIB_SRC_PATH:=${PWD}/src}
-LIB_DST_PATH=${LIB_DST_PATH:=${PWD}/build/target/android/jniLibs}
+export LIB_SRC_PATH=${LIB_SRC_PATH:=${PWD}/src}
+export LIB_DST_PATH=${LIB_DST_PATH:=${PWD}/build/target/android/jniLibs}
 
 build () {
 
