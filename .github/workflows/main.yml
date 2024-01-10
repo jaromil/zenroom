@@ -1,23 +1,4 @@
 name: zenroom
-on:
-  push:
-    paths-ignore:
-      - 'docs/**'
-      - 'examples/**'
-      - '*.md'
-    branches:
-      - master
-  pull_request:
-    paths-ignore:
-      - 'docs/**'
-      - 'examples/**'
-      - '*.md'
-    branches:
-      - master
-
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref_name }}
-  cancel-in-progress: true
 
 jobs:
   android-build:
