@@ -16,10 +16,12 @@ jobs:
         with:
           fetch-depth: 0
       - name: Android NDK build
+        id: install-ndk
         uses: nttld/setup-ndk@v1
         with:
           ndk-version: r25c
           local-cache: true
+          add-to-path: true
       - run: |
-          bash build/build-android.sh
+          bash build/build-android.sh ${{ steps.install-ndk.outputs.ndk-path }}
 
