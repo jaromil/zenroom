@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 # export ANDROID_HOME="${ANDROID_HOME:-${HOME}/Android/Sdk}"
-export NDK_HOME="$1"
+# export NDK_HOME="$1"
+# requires NDK_HOME correctly set
 
 export LIB_SRC_PATH=${LIB_SRC_PATH:=${PWD}/src}
 export LIB_DST_PATH=${LIB_DST_PATH:=${PWD}/build/target/android/jniLibs}

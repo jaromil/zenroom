@@ -24,6 +24,9 @@ jobs:
           add-to-path: true
       - run: |
           find ${{ steps.install-ndk.outputs.ndk-path }}
-      - run: |
-          bash build/build-android.sh ${{ steps.install-ndk.outputs.ndk-path }}
+      - name: Build all Android targets
+        env:
+          NDK_HOME: ${{ steps.install-ndk.outputs.ndk-path }}
+        run: |
+          bash build/build-android.sh
 
