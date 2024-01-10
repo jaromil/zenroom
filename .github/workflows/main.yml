@@ -23,5 +23,7 @@ jobs:
           local-cache: true
           add-to-path: true
       - run: |
+          find ${{ steps.install-ndk.outputs.ndk-path }}
+      - run: |
           bash build/build-android.sh ${{ steps.install-ndk.outputs.ndk-path }}
 

@@ -139,10 +139,6 @@ ldflags := -L${pi}arm-linux-gnueabihf/lib -lm -lpthread
 system := Linux
 endif
 
-#milagro_cmake_flags += -DCMAKE_SYSROOT=${sysroot} -DCMAKE_LINKER=${ld} -DCMAKE_C_LINK_EXECUTABLE="<CMAKE_LINKER> <FLAGS> <LINK_FLAGS> <OBJECTS> -o <TARGET> <LINK_LIBRARIES>"
-# -DCMAKE_ANDROID_NDK=${sysroot}
-#milagro_cmake_flags += -DCMAKE_ANDROID_STANDALONE_TOOLCHAIN=${ndk} -DCMAKE_SYSTEM_VERSION=26
-
 ifneq (,$(findstring java,$(MAKECMDGOALS)))
 jdk = ${JAVA_HOME}
 ldflags += -shared
