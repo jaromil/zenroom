@@ -164,7 +164,7 @@ ldflags := -shared
 cflags += -fPIC -DLIBRARY -D'ARCH=\"LINUX\"' -DARCH_LINUX -DARCH_ANDROID
 cflags += -DLUA_USE_DLOPEN -I${ndk}/sysroot/usr/include
 system := Android
-android := 18
+android := 21
 endif
 
 ifneq (,$(findstring android-arm,$(MAKECMDGOALS)))
