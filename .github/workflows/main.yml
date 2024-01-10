@@ -1,4 +1,11 @@
 name: zenroom
+on:
+  push:
+    branches:
+      - android
+  pull_request:
+    branches:
+      - android
 
 jobs:
   android-build:
